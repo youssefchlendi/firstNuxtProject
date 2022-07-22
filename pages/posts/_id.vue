@@ -3,11 +3,15 @@
     <v-row justify="center">
       <v-col cols="12" md="8">
         <v-card>
-          <h1 v-if="post">{{ post.title }}</h1>
+          <h1 v-if="post">
+            {{ post.title }}
+          </h1>
           <p v-if="post">
             {{ post.body }}
           </p>
-          <h1 v-else>not fount</h1>
+          <h1 v-else>
+            not found
+          </h1>
         </v-card>
       </v-col>
       <v-col>
@@ -46,7 +50,9 @@ export default {
       return this.$store.state.posts.posts.find(post => post.id === this.id)
     },
     relatedPosts () {
-      return this.$store.state.posts.posts.filter(post => post.id !== this.id)
+      return this.$store.state.posts.posts.filter(
+        post => post.id !== this.id
+      )
     }
   }
 }
