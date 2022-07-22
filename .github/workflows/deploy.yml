@@ -1,0 +1,61 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Deploying
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            # Copy and build new version
+            cp -r prospectwith-app prospectwith-app-new
+            cd prospectwith-app-new
+            git checkout production
+            git fetch --all
+            git reset --hard origin/production
+            npm install --only=production
+            npm run build
+            # Replace current version with the new one
+            cd ..
+            mv prospectwith-app prospectwith-app-old
+            mv prospectwith-app-new prospectwith-app
+            # Restart server
+            cd prospectwith-app
+            pm2 kill
+            pm2 start "npm run start" --name App
+            rm -rf ../prospectwith-app-old
+      - name: Slack success notification
+        if: job.status == 'success'
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_CHANNEL: app
+          SLACK_COLOR: good
+          SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          SLACK_MESSAGE: 'Deployment achieved with success'
+          SLACK_TITLE: CI
+          SLACK_USERNAME: GitHub
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
+      - name: Slack error notification
+        if: job.status == 'failure'
+        uses: rtCamp/action-slack-notify@master
+        env:
+          SLACK_CHANNEL: app
+          SLACK_COLOR: danger
+          SLACK_ICON: https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png
+          SLACK_MESSAGE: 'The deployment has failed @channel'
+          SLACK_TITLE: CI
+          SLACK_USERNAME: GitHub
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
