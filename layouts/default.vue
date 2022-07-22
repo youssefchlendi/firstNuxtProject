@@ -6,6 +6,7 @@
       :clipped="clipped"
       fixed
       app
+      right
     >
       <v-list>
         <v-list-item
@@ -25,7 +26,7 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
-      :clipped-left="clipped"
+      :clipped-right="clipped"
       fixed
       app
     >
@@ -64,7 +65,7 @@
     </v-main>
     <v-navigation-drawer
       v-model="rightDrawer"
-      :right="right"
+      :right="!right"
       temporary
       fixed
     >
