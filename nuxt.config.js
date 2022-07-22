@@ -22,6 +22,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
+    'material-design-icons-iconfont/dist/material-design-icons.css'
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -46,13 +47,29 @@ export default {
     '@nuxtjs/axios',
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
-    'bootstrap-vue/nuxt'
+    'bootstrap-vue/nuxt',
+    '@nuxtjs/auth-next'
   ],
+
+  auth: {
+    // Options
+    strategies: {
+      laravelSanctum: {
+        provider: 'laravel/sanctum',
+        tokenType: 'Bearer',
+        url: 'http://localhost:8000',
+        endpoints: {
+          login: { url: '/api/login' },
+          user: { url: '/api/profile' }
+        }
+      }
+    }
+  },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: '/'
+    baseURL: 'http://localhost:8000/api'
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
