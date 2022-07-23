@@ -31,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/logout', [AuthenticationController::class, 'logout']);
     Route::get('/profile', [AuthenticationController::class, 'profile']);
     Route::group(['prefix' => '/profile'], function () {
         Route::put('/image', [UpdateProfileController::class, 'updateImage']);

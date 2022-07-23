@@ -77,16 +77,13 @@ class AuthenticationController extends Controller
                 'data'      => []
             ], 401);
         }
-        return response()->json([
-            'success'   => true,
-            'token'     => Auth::user()->createToken('token')->plainTextToken,
-            'user'      => Auth::user(),
-            'responsability' => RoleUser::where('user_id', Auth::user()->id)->whereHas('role', function ($query) {
-                $query->where('ename', 'like', '%Unit Assigned Leader%');
-            })->with('responsability')->first()?->responsability[0]->ename,
-            'status'    => $this->getRoles(Auth::user()->id)['status'],
-            'roles'     => $this->getRoles(Auth::user()->id)['roles'],
-        ], 200);
+        $request->session()->regenerate();
+    }
+
+    public function logout(Request $request)
+    {
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
     }
 
     public function unique($field)
