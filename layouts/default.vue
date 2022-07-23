@@ -115,6 +115,11 @@ export default {
           icon: 'mdi-chart-bubble',
           title: 'Inspire',
           to: '/inspire'
+        },
+        {
+          icon: 'mdi-account-cog',
+          title: 'Manage leaders',
+          to: '/Admin/manageLeaders'
         }
       ],
       miniVariant: false,
