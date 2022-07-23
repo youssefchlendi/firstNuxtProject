@@ -1,4 +1,4 @@
-export default function ({ store, redirect }) {
+export default function ({ store, error }) {
   // If the user is not authenticated
   let isSuperAdmin = null
   store.state.auth.user.roles?.forEach((role) => {
@@ -7,6 +7,6 @@ export default function ({ store, redirect }) {
     }
   })
   if (!isSuperAdmin) {
-    return redirect({ name: 'index' })
+    error({ statusCode: 401, message: 'لست مخول للدخول لهذه الصفحة' })
   }
 }
