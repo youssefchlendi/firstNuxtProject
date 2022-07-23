@@ -4,7 +4,8 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   target: 'static',
   router: {
-    base: '/firstNuxtProject/'
+    base: '/firstNuxtProject/',
+    middleware: ['auth']
   },
   head: {
     titleTemplate: '%s - firstNuxtProject',
@@ -60,16 +61,24 @@ export default {
         url: 'http://localhost:8000',
         endpoints: {
           login: { url: '/api/login' },
-          user: { url: '/api/profile' }
+          user: { url: '/api/profile' },
+          logout: false
         }
       }
+    },
+    redirect: {
+      login: '/auth/login',
+      logout: '/',
+      home: '/'
     }
   },
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'http://localhost:8000/api'
+    baseURL: 'http://localhost:8000/api',
+    withCredentials: true
+
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
