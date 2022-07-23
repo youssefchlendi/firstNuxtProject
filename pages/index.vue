@@ -22,8 +22,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              documentation </a
-            >.
+              documentation </a>.
           </p>
           <p>
             If you have questions, please join the official
@@ -43,8 +42,7 @@
               rel="noopener noreferrer"
               title="contribute"
             >
-              issue board </a
-            >.
+              issue board </a>.
           </p>
           <p>
             Thank you for developing with Vuetify and I look forward to bringing
@@ -53,7 +51,7 @@
           <div class="text-xs-right">
             <em><small>&mdash; John Leider</small></em>
           </div>
-          <hr class="my-3" />
+          <hr class="my-3">
           <a
             href="https://nuxtjs.org/"
             target="_blank"
@@ -61,7 +59,7 @@
           >
             Nuxt Documentation
           </a>
-          <br />
+          <br>
           <a
             href="https://github.com/nuxt/nuxt.js"
             target="_blank"
@@ -94,6 +92,7 @@
 
 <script>
 export default {
-  name: 'IndexPage'
+  name: 'IndexPage',
+  auth: false
 }
 </script>
