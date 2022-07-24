@@ -114,9 +114,9 @@
       </v-card-text>
     </v-card>
     <v-pagination
-      v-model="pagination_meta.current"
+      v-model="page"
       :length="pagination_meta.total"
-      @input="$emit('getDemandeMateriel',{},pagination)"
+      @input="$emit('getDemandeMateriel',{},pagination,page)"
     />
     <v-select
       v-model="pagination"
@@ -152,7 +152,8 @@ export default {
     return {
       tab: null,
       items: ['المعلومات الاساسية', 'الاثاث المطلوب'],
-      pagination: 5
+      pagination: 5,
+      page: this.pagination_meta.current
     }
   },
   watch: {
@@ -162,8 +163,8 @@ export default {
     setStatus (id, status) {
       this.$emit('setStatus', id, status)
     },
-    rem (id, materiel_id) {
-      this.$emit('rem', id, materiel_id)
+    rem (id, materielId) {
+      this.$emit('rem', id, materielId)
     }
   }
 }

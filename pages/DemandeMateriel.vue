@@ -60,10 +60,10 @@ export default {
     this.getDemandeMateriel()
   },
   methods: {
-    getDemandeMateriel (alert = {}, pagination = 5) {
+    getDemandeMateriel (alert = {}, pagination = 5, page = 0) {
       this.$axios
         .get('/sent-demande-materiel?page=' + this.pagination_meta.current, {
-          params: { pagination }
+          params: { pagination, page }
         })
         .then((response) => {
           this.demandes = response.data.data

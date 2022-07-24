@@ -41,9 +41,9 @@ export default {
     this.getDemandeMateriel()
   },
   methods: {
-    getDemandeMateriel (alert = {}, pagination = 5) {
+    getDemandeMateriel (alert = {}, pagination = 5, page = 1) {
       this.$axios
-        .get('/demande-materiel', { params: { pagination } })
+        .get('/demande-materiel', { params: { pagination, page } })
         .then((response) => {
           this.demandes = response.data.data
           this.pagination_meta.current = response.data.pagination.current_page

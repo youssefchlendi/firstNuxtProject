@@ -150,9 +150,9 @@
       </v-card-actions>
     </v-card>
     <v-pagination
-      v-model="pagination_meta.current"
+      v-model="page"
       :length="pagination_meta.total"
-      @input="$emit('getDemandeMateriel',{},pagination)"
+      @input="$emit('getDemandeMateriel',{},pagination, page)"
     />
     <v-select
       v-model="pagination"
@@ -191,7 +191,8 @@ export default {
       rules: [v => !!v || 'الكمية مطلوبة و يجب ان تكون رقما'],
       tab: null,
       items: ['المعلومات الاساسية', 'الاثاث المطلوب'],
-      pagination: 5
+      pagination: 5,
+      page: this.pagination_meta.current
     }
   },
   watch: {
