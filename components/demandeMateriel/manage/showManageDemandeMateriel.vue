@@ -54,7 +54,7 @@
                 </v-text-field>
 
                 <div
-                  v-if="$store.getters.authUser.id == materiel.responsable_id"
+                  v-if="$store.state.auth.user.user.id == materiel.responsable_id"
                   class="m-4 mr-0 ml-1 mr-1"
                 >
                   <v-btn
