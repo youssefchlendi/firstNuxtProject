@@ -22,11 +22,10 @@ class DemandeMaterielController extends Controller
         $demandes = DemandeMateriel::with('materiels')
             ->orderBy('created_at', 'DESC')
             ->with('user')
-            ->where('user_id', 5)
             ->whereHas('materiels', function ($query) use ($id) {
                 $query->where('responsable_id', $id);
             })
-            ->paginate($request->paginate ? $request->paginate : 5);
+            ->paginate($request->pagination ? $request->pagination : 5);
         if ($demandes) {
             return response()->json(new demandeMaterielCollection($demandes), 200);
         } else {
