@@ -58,7 +58,7 @@ export default {
       laravelSanctum: {
         provider: 'laravel/sanctum',
         tokenType: 'Bearer',
-        url: 'http://localhost:8000',
+        url: 'https://smurfsdev.tn/back-end/public',
         endpoints: {
           login: { url: '/api/login' },
           user: { url: '/api/profile' },
