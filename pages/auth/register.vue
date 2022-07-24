@@ -375,6 +375,7 @@ const isFileImage = (file) => {
   return file ? file.includes('image') : false
 }
 export default {
+  auth: 'guest',
   name: 'StepFormValidation',
   components: {
     FormWizard,
