@@ -29,6 +29,8 @@
 </template>
 
 <script>
+/* eslint-disable camelcase */
+
 import Form from '@/components/demandeMateriel/formDemandeMateriel.vue'
 import show from '@/components/demandeMateriel/showDemandeMateriel.vue'
 export default {
