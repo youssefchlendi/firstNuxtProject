@@ -120,7 +120,39 @@ export default {
           icon: 'mdi-account-cog',
           title: 'Manage leaders',
           to: '/Admin/manageLeaders'
+        },
+        {
+          icon: 'mdi-account-group',
+          title: 'Manage troops',
+          to: '/Admin/manageTroops'
+        },
+        {
+          icon: 'mdi-toolbox',
+          title: 'manage materiel',
+          to: '/UnitAssignedLeader/materiel-manager/manageMateriel'
+        },
+        {
+          icon: 'mdi-file-document',
+          title: 'demande materiel',
+          to: '/UnitAssignedLeader/materiel-manager/manageDemandeMateriel'
+        },
+        {
+          icon: 'mdi-cash-check',
+          title: 'manage members subscription',
+          to: '/UnitAssignedLeader/money-manager/manageMembers'
+        },
+        {
+          icon: 'mdi-file-document-check',
+          title: 'demande materiel',
+          to: '/DemandeMateriel'
+        },
+        {
+          icon: 'mdi-account-cog',
+          title: 'Manage members',
+          to: '/UnitLeader/manageMembers'
+
         }
+
       ],
       miniVariant: false,
       right: true,
